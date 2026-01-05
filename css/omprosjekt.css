@@ -1,0 +1,113 @@
+/* omprosjekt.css — page-specific rules that extend home.css
+   This file expects home.css to be loaded first. If you don't load home.css,
+   sensible fallbacks are provided so the page will still look okay. */
+
+/* Ensure the nav item for this page is highlighted */
+.nav-omprojekt {
+  background: var(--accent, #1fabce);
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(28, 162, 196, 0.14);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.nav-omprojekt:hover,
+.nav-omprojekt:focus {
+  transform: translateY(-3px);
+  filter: brightness(1.03);
+  outline: none;
+}
+
+/* Page layout */
+.doc-hero {
+  max-width: var(--max-width, 1200px);
+  margin: 28px auto 12px;
+  padding: 18px 20px;
+}
+.doc-hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 3.6vw, 36px);
+  color: var(--text, #ffffff);
+}
+.lede {
+  margin: 6px 0 12px;
+  color: var(--muted-text, var(--muted, #cfcfcf));
+  max-width: 760px;
+}
+
+/* Sections */
+.doc-section {
+  max-width: var(--max-width, 1200px);
+  margin: 18px auto;
+  padding: 18px 20px;
+}
+.doc-section h2 {
+  color: var(--text, #ffffff);
+  font-size: 20px;
+  margin: 6px 0 10px;
+}
+.doc-section p {
+  color: var(--muted-text, var(--muted, #cfcfcf));
+  line-height: 1.7;
+  margin: 8px 0;
+}
+
+/* Lists and cards */
+.bullet-list {
+  margin-left: 1.05rem;
+  color: var(--muted-text, var(--muted, #cfcfcf));
+  line-height: 1.7;
+}
+.card {
+  background: var(--panel, var(--card, #11151f));
+  border: 1px solid var(--border, #1e2633);
+  padding: 14px;
+  border-radius: 12px;
+  margin: 12px 0;
+}
+
+/* Stat boxes */
+.stat-grid {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 18px;
+  flex-wrap: wrap;
+}
+.stat-box {
+  background: linear-gradient(180deg, rgba(36,206,248,0.04), rgba(36,206,248,0.02));
+  border: 1px solid rgba(36,206,248,0.08);
+  padding: 12px 16px;
+  border-radius: 10px;
+  min-width: 120px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text, #ffffff);
+  margin: 0;
+}
+.stat-label {
+  color: var(--muted-text, var(--muted, #cfcfcf));
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+}
+
+/* Ensure nav-list behaves as expected */
+.nav-list {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 880px) {
+  .doc-hero { padding: 14px; }
+  .stat-grid { justify-content: flex-start; }
+  .nav-list { gap: 10px; flex-wrap: wrap; }
+}
