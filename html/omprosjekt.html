@@ -27,13 +27,13 @@
 
   <main id="main" tabindex="-1">
     <section class="doc-hero">
-      <div class="doc-hero-inner">
+      <div class="doc-hero-inner reveal">
         <h1>Om prosjektet</h1>
         <p class="lede">Oversikt over mål, kvalitetskrav, planverk og ressursbruk for Bachelorprosjektet: Chatbot for CheckIn.</p>
       </div>
     </section>
 
-    <section id="hva" class="doc-section">
+    <section id="hva" class="doc-section reveal">
       <h2>Hva konkret skal prosjektet utvikle og gjøre?</h2>
       <p>
         Prosjektet skal utvikle en chatbot som svarer på spørsmål knyttet til CheckIns API og tilhørende dokumentasjon.
@@ -41,7 +41,7 @@
       </p>
     </section>
 
-    <section id="kvalitet" class="doc-section">
+    <section id="kvalitet" class="doc-section reveal">
       <h2>Viktige kvalitetsaspekter</h2>
       <p>De sentrale kvalitetsaspektene er:</p>
       <ul class="bullet-list">
@@ -55,7 +55,7 @@
       </p>
     </section>
 
-    <section id="planer" class="doc-section">
+    <section id="planer" class="doc-section reveal">
       <h2>Planer, backlogg, estimater og ressursbruk</h2>
       <p>
         Prosjektet styres ved bruk av Scrum-metodikk med ukentlige sprinter. Backloggen håndteres og prioriteres i Jira i samarbeid med oppdragsgiver. 
@@ -64,7 +64,7 @@
       </p>
     </section>
 
-    <section id="ressurser" class="doc-section">
+    <section id="ressurser" class="doc-section reveal">
       <h2>Hvordan vurderes ressursutnyttelsen?</h2>
       <p>
         Ressursutnyttelse vurderes ved å sammenligne faktisk tidsbruk mot estimater og ved leveranse av fungerende inkrementer til hver sprint. Prosjektet er estimert til ca. 800 timer totalt (omtrent 400 timer per deltaker).
@@ -73,11 +73,11 @@
 
       <div class="stat-grid">
         <div class="stat-box">
-          <p class="stat-value">~800 t</p>
+          <p class="stat-value" data-target="800">~800 t</p>
           <p class="stat-label">Estimert totalt</p>
         </div>
         <div class="stat-box">
-          <p class="stat-value">~400 t</p>
+          <p class="stat-value" data-target="400">~400 t</p>
           <p class="stat-label">Per deltaker</p>
         </div>
       </div>
@@ -106,5 +106,7 @@
       <p>© 2025 G22 – Chatbot for CheckIn AS. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="../js/omprosjekt.js" defer></script>
 </body>
 </html>

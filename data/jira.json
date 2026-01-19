@@ -1,4 +1,89 @@
 {
-  "fetchedAt": "2026-01-19T06:30:56.384Z",
-  "issues": []
+  "fetchedAt": "2026-01-19T08:42:36.074Z",
+  "issues": [
+    {
+      "key": "BCHLRSPPGV-2",
+      "summary": "Creating project layout root",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Low",
+      "labels": [],
+      "created": "2026-01-15T10:48:45.180+0100",
+      "updated": "2026-01-19T09:12:51.397+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-2"
+    },
+    {
+      "key": "BCHLRSPPGV-5",
+      "summary": "Github Actions examination",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Low",
+      "labels": [],
+      "created": "2026-01-15T10:52:55.939+0100",
+      "updated": "2026-01-19T09:12:50.870+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-5"
+    },
+    {
+      "key": "BCHLRSPPGV-7",
+      "summary": "Rough Plan the batchlor project",
+      "issueType": "Task",
+      "status": "In Progress",
+      "assignee": "Martin Brådland",
+      "priority": "High",
+      "labels": [],
+      "created": "2026-01-16T10:42:40.000+0100",
+      "updated": "2026-01-19T09:11:02.586+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-7"
+    },
+    {
+      "key": "BCHLRSPPGV-4",
+      "summary": "CI Skeleton (Github Actions)",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "High",
+      "labels": [],
+      "created": "2026-01-15T10:52:12.516+0100",
+      "updated": "2026-01-16T12:41:15.365+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-4"
+    },
+    {
+      "key": "BCHLRSPPGV-3",
+      "summary": "Install developer tools",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "created": "2026-01-15T10:51:40.204+0100",
+      "updated": "2026-01-16T12:40:45.095+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-3"
+    },
+    {
+      "key": "BCHLRSPPGV-1",
+      "summary": "Setup & Foundations",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "created": "2026-01-15T10:40:47.590+0100",
+      "updated": "2026-01-16T12:40:40.263+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-1"
+    },
+    {
+      "key": "BCHLRSPPGV-6",
+      "summary": "Finish \"Gruppekontrakt\"",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Martin Brådland",
+      "priority": "Medium",
+      "labels": [],
+      "created": "2026-01-15T10:58:40.593+0100",
+      "updated": "2026-01-16T10:42:48.188+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-6"
+    }
+  ]
 }

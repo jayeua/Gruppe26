@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jira Tasks — Example</title>
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/jira.css">
+  <link rel="stylesheet" href="../css/jira-cards.css">
+</head>
+<body>
+  <main class="container">
+    <div class="jira-page">
+      <aside class="jira-hero">
+        <h1>All Tasks</h1>
+        <p class="hero-sub">A simple, elegant overview of project work — powered by Jira and rendered statically for GitHub Pages.</p>
+      </aside>
+
+      <section id="jira-area" class="jira-area">
+      <div class="jira-controls">
+        <div class="jira-filters">
+          <button data-filter="all" class="active">Alle</button>
+          <button data-filter="TO DO">Ikke startet</button>
+          <button data-filter="In Progress">Pågår</button>
+          <button data-filter="DONE">Ferdig</button>
+        </div>
+        <div class="jira-stats">
+          <div class="stat"><span id="stat-total">0</span><small>Totalt oppgaver</small></div>
+          <div class="stat"><span id="stat-todo">0</span><small>Ikke startet</small></div>
+          <div class="stat"><span id="stat-inprog">0</span><small>Pågår</small></div>
+          <div class="stat"><span id="stat-done">0</span><small>Ferdig</small></div>
+        </div>
+        <div class="jira-actions">
+        </div>
+      </div>
+
+      <div class="kanban">
+        <div class="kanban-column" data-col="TO DO">
+          <div class="column-header">Ikke startet <span class="col-count" id="count-todo">0</span></div>
+          <div class="column-body" id="col-todo"></div>
+        </div>
+        <div class="kanban-column" data-col="In Progress">
+          <div class="column-header">Pågår <span class="col-count" id="count-inprog">0</span></div>
+          <div class="column-body" id="col-inprog"></div>
+        </div>
+        <div class="kanban-column" data-col="DONE">
+          <div class="column-header">Ferdig <span class="col-count" id="count-done">0</span></div>
+          <div class="column-body" id="col-done"></div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <p>Tip: run a local server from the repo root to view this page:</p>
+    <pre><code>python3 -m http.server 8000
+open http://localhost:8000/html/jira.html</code></pre>
+  </main>
+
+  <script src="../js/jira_page.js"></script>
+  <script>
+    // in browser console
+    localStorage.removeItem('jira_kanban_state');
+    location.reload();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+/* Minimal styles for the Jira example page */
+.jira-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.jira-task {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.jira-task a {
+  color: #0a66c2;
+  text-decoration: none;
+}
+.jira-task a:hover { text-decoration: underline; }
+.jira-status {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: #333;
+  opacity: 0.8;
+}
+
+#jira-meta { margin-bottom: 0.5rem; color: #444; font-size: 0.95rem; }

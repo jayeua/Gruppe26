@@ -1,0 +1,126 @@
+/* Fancy card grid + badges for Jira example */
+.jira-controls { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem; }
+.jira-filters button { margin-right:0.5rem; padding:0.4rem 0.8rem; border-radius:999px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#9fb7d6; cursor:pointer; }
+.jira-filters button.active { background:#0b63b6; color:#fff; box-shadow:0 4px 14px rgba(11,99,182,0.12); }
+.jira-stats { display:flex; gap:1rem; }
+.jira-stats .stat { background:rgba(255,255,255,0.02); padding:0.6rem 1rem; border-radius:8px; text-align:center; }
+.jira-stats .stat span { display:block; font-weight:700; font-size:1.4rem; color:#6ec1ff; }
+
+.card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+.jira-card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); border-radius:12px; padding:1rem; box-shadow: 0 6px 18px rgba(2,6,23,0.45); transition:transform .18s ease,box-shadow .18s ease; border-left:4px solid rgba(11,99,182,0.9); }
+.jira-card:hover { transform:translateY(-6px); box-shadow: 0 14px 30px rgba(2,6,23,0.6); }
+.card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; }
+.issue-key { font-weight:700; color:#8ad1ff; }
+.badge { background:#ffbb33; color:#222; padding:0.2rem 0.6rem; border-radius:999px; font-size:0.75rem; }
+.card-title { margin:0 0 0.6rem 0; font-size:1rem; }
+.card-meta { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; color:#cbd8e6; font-size:0.9rem; }
+.status-pill { padding:0.25rem 0.6rem; border-radius:999px; font-weight:700; font-size:0.8rem; }
+.status-pill.to-do, .status-pill.todo { background:#f0ad4e; color:#fff; }
+.status-pill['in-progress'], .status-pill.in-progress { background:#17a2b8; color:#fff; }
+.status-pill.done, .status-pill.ferdig { background:#28a745; color:#fff; }
+.card-footer { margin-top:0.8rem; display:flex; justify-content:flex-end; }
+.btn { background:transparent; border:1px solid rgba(255,255,255,0.06); color:#9fb7d6; padding:0.35rem 0.6rem; border-radius:6px; cursor:pointer; }
+
+/* Modal */
+.jira-modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+.jira-modal.open { pointer-events:auto; }
+.jira-modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+.jira-modal.open { pointer-events:auto; }
+/* darkened backdrop + subtle blur */
+.jira-modal.open { background: rgba(3,6,8,0.65); backdrop-filter: blur(4px); }
+.jira-modal-inner { background:linear-gradient(180deg,#0b0d0e,#0f1213); color:#e6f0ff; padding:1.6rem; border-radius:14px; width:min(920px,95%); max-height:86vh; overflow:auto; box-shadow:0 40px 120px rgba(0,0,0,0.7); transform:translateY(10px); opacity:0; transition:opacity .22s ease,transform .22s ease; border:1px solid rgba(255,255,255,0.03); }
+.jira-modal.open .jira-modal-inner { transform:none; opacity:1; }
+.jira-modal .close { position:absolute; right:1rem; top:1rem; background:transparent; border:0; color:#fff; font-size:1.4rem; cursor:pointer; }
+
+.error { color:#ff6b6b; padding:1rem; }
+
+/* Kanban columns - portfolio vibe */
+:root {
+	--bg: #0f1112;
+	--panel: #121417;
+	--muted: #9aa6b2;
+	--accent: #e6b450;
+	--accent-2: #8ad1ff;
+}
+
+.kanban { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1.25rem; margin-top:1.6rem; }
+.kanban-column { background: transparent; padding:1rem 0.9rem; border-radius:8px; min-height:260px; border-left:4px solid rgba(255,255,255,0.03); }
+.column-header { font-weight:800; color:#dfe7ee; display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem; font-size:0.98rem; text-transform:uppercase; letter-spacing:0.12rem; }
+.column-body { min-height:180px; display:flex; flex-direction:column; gap:1rem; }
+.column-body.drag-over { outline:2px dashed rgba(138,209,255,0.12); background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+.col-count { background:transparent; padding:0.12rem 0.5rem; border-radius:999px; font-weight:700; color:var(--muted); border:1px solid rgba(255,255,255,0.03); }
+
+/* make cards draggable cursor */
+.jira-card[draggable="true"] { cursor:grab; }
+
+/* Page container tweaks for this page only */
+main.container { background: var(--bg); }
+main.container > h1 { font-family: Georgia, 'Times New Roman', serif; font-size:4.2rem; margin:0 0 0.6rem 0; color:#f6f7f8; letter-spacing: -0.02em; line-height:0.9; }
+.jira-controls { display:flex; align-items:center; gap:1rem; justify-content:space-between; margin-bottom:1rem; }
+.jira-filters button { background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:0.45rem 0.8rem; border-radius:6px; font-weight:700; text-transform:uppercase; font-size:0.78rem; }
+.jira-filters button.active { color:#fff; border-color:rgba(138,209,255,0.08); background:linear-gradient(180deg, rgba(138,209,255,0.04), rgba(138,209,255,0.01)); }
+.jira-stats { display:flex; gap:0.8rem; align-items:center; }
+.jira-stats .stat { text-align:center; color:var(--muted); }
+.jira-stats .stat span { display:block; font-weight:800; color:#fff; font-size:1.05rem; }
+
+/* Card styling — cleaner, muted, image-like */
+.jira-card { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02)); border-radius:10px; padding:1rem; border:1px solid rgba(255,255,255,0.03); transition:transform .16s ease, box-shadow .16s ease; display:block; }
+.jira-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.6); }
+.card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; }
+.issue-key { font-weight:800; color:var(--accent-2); font-size:0.86rem; }
+.badge { background:transparent; color:var(--accent); padding:0.18rem 0.5rem; border-radius:6px; font-size:0.78rem; border:1px solid rgba(255,255,255,0.03); }
+.card-title { margin:0 0 0.6rem 0; font-size:1.02rem; color:#eef5ff; font-weight:700; }
+.card-meta { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; color:var(--muted); font-size:0.86rem; }
+.status-pill { padding:0.25rem 0.6rem; border-radius:999px; font-weight:700; font-size:0.78rem; }
+.status-pill.todo { background:transparent; color:var(--accent-2); border:1px solid rgba(138,209,255,0.06); }
+.status-pill.in-progress { background:transparent; color:#a1d3cc; border:1px solid rgba(161,211,204,0.05); }
+.status-pill.done { background:transparent; color:#9be07a; border:1px solid rgba(155,224,122,0.06); }
+.card-footer { margin-top:0.6rem; display:flex; justify-content:flex-end; }
+.btn { background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:0.35rem 0.6rem; border-radius:6px; cursor:pointer; }
+
+/* Modal tweaks */
+.jira-modal-inner { background:linear-gradient(180deg,#0b0d0e,#111314); color:#e6f0ff; padding:1.4rem; }
+
+/* Sprint1 special card styling */
+.jira-card { position:relative; }
+.card-header .badge { background:rgba(0,0,0,0.25); color:var(--accent); border:1px solid rgba(255,255,255,0.04); padding:0.22rem 0.6rem; }
+/* priority colors */
+.card-header .badge.high { background: linear-gradient(180deg,#ff6b6b,#e04444); color:#fff; border-color: rgba(224,68,68,0.18); }
+.card-header .badge.medium { background: linear-gradient(180deg,#ffd97a,#f2c94c); color:#081014; border-color: rgba(242,201,76,0.12); }
+.card-header .badge.low { background: linear-gradient(180deg,#8ee08f,#28a745); color:#04260a; border-color: rgba(40,167,69,0.12); }
+
+/* Modal layout improvements */
+.modal-head h2 { font-size:1.8rem; margin:0 0 0.8rem 0; color:#ffffff; }
+.modal-grid { display:grid; grid-template-columns: 1fr 320px; gap:1rem; align-items:start; }
+.modal-meta { background:rgba(255,255,255,0.02); padding:0.8rem; border-radius:8px; }
+.meta-row { margin-bottom:0.6rem; color:var(--muted); }
+.meta-row strong { display:inline-block; width:100px; color:#e6eef8; }
+.meta-row.small { opacity:0.8; font-size:0.9rem; }
+.modal-body { padding:0.6rem; color:#dbeeff; }
+
+@media (max-width:760px){ .modal-grid { grid-template-columns: 1fr; } }
+
+.modal-actions { margin-top:1rem; display:flex; justify-content:flex-end; }
+.modal-actions .modal-exit { background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); padding:0.45rem 0.9rem; border-radius:8px; }
+
+/* primary action (Open in Jira) */
+.modal-body a.jira-open { display:inline-block; background:linear-gradient(180deg,#1b7bd6,#0b63b6); color:#fff; padding:0.6rem 1rem; border-radius:8px; text-decoration:none; font-weight:700; box-shadow:0 8px 28px rgba(11,99,182,0.16); }
+
+/* lock body scroll while modal open */
+.modal-open { overflow:hidden !important; }
+
+@media (max-width:760px){ .modal-grid { grid-template-columns: 1fr; } }
+
+/* Page layout: hero + content */
+.jira-page { display:grid; grid-template-columns: 360px 1fr; gap:2rem; align-items:start; }
+.jira-hero { padding:6rem 1rem 1rem 0; }
+.jira-hero h1 { font-family: 'Georgia', 'Times New Roman', serif; font-size:6.2rem; margin:0; color:#ffffff; line-height:0.9; letter-spacing:-0.02em; }
+.jira-hero .hero-sub { margin-top:0.6rem; color:var(--muted); max-width:360px; }
+
+@media (max-width:900px){
+	.jira-page { grid-template-columns: 1fr; }
+	.jira-hero { padding:2rem 0 0 0; }
+	.jira-hero h1 { font-size:3rem; }
+}
+
+
