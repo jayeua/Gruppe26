@@ -234,7 +234,9 @@
   }
 
   function fetchAndRender(){
-    fetch(DATA_PATH, { cache: 'no-store' })
+    // add a timestamp query to bypass CDN/browser caches when needed
+    const url = DATA_PATH + (DATA_PATH.includes('?') ? '&' : '?') + 't=' + Date.now();
+    fetch(url, { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error('data not found'); return r.json(); })
       .then(json => {
         const issues = json.issues || [];
