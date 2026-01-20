@@ -27,7 +27,7 @@ if (!JIRA_BASE_URL || !JIRA_EMAIL || !JIRA_API_TOKEN) {
 async function fetchIssues() {
   const auth = Buffer.from(`${JIRA_EMAIL}:${JIRA_API_TOKEN}`).toString('base64');
   const base = JIRA_BASE_URL.replace(/\/$/, '');
-  const url = `${base}/rest/api/3/search/jql?jql=${encodeURIComponent(JIRA_JQL)}&maxResults=${MAX_RESULTS}&fields=summary,issuetype,status,assignee,priority,labels,created,updated`;
+  const url = `${base}/rest/api/3/search/jql?jql=${encodeURIComponent(JIRA_JQL)}&maxResults=${MAX_RESULTS}&fields=summary,issuetype,status,assignee,priority,labels,created,updated,description`;
 
   const res = await fetch(url, { headers: { Authorization: `Basic ${auth}`, Accept: 'application/json', 'Content-Type': 'application/json' } });
   if (!res.ok) {
@@ -46,6 +46,7 @@ async function fetchIssues() {
       assignee: i.fields.assignee && (i.fields.assignee.displayName || i.fields.assignee.emailAddress),
       priority: i.fields.priority && i.fields.priority.name,
       labels: i.fields.labels || [],
+      description: i.fields.description || '',
       created: i.fields.created,
       updated: i.fields.updated,
       url: `${base}/browse/${i.key}`

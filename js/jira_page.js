@@ -12,6 +12,8 @@
   const statInprog = document.getElementById('stat-inprog');
   const statDone = document.getElementById('stat-done');
   const filterBtns = Array.from(document.querySelectorAll('.jira-filters [data-filter]'));
+  const sprintSelect = document.getElementById('sprint-select');
+  const prioritySelect = document.getElementById('priority-select');
 
   if (!areaEl || !colTodo || !colInprog || !colDone) return;
 
@@ -37,11 +39,60 @@
           <div class="meta-row small"><small>Updated: ${issue.updated || '—'}</small></div>
         </div>
         <div class="modal-body">
+          <div class="issue-description"><!-- description injected below --></div>
           <p><a href="${issue.url||'#'}" target="_blank" rel="noopener">Open in Jira</a></p>
         </div>
       </div>
       <div class="modal-actions"><button class="btn modal-exit">Exit</button></div>
     `;
+
+    // inject description safely (preserve basic structure)
+    const descContainer = modalContent.querySelector('.issue-description');
+    const raw = issue.description || '';
+
+    function adfToPlainText(node) {
+      if (!node) return '';
+      if (typeof node === 'string') return node;
+      if (Array.isArray(node)) return node.map(adfToPlainText).join('');
+      let out = '';
+      const t = node.type;
+      if (t === 'text') {
+        out += node.text || '';
+      } else if (t === 'paragraph') {
+        out += (node.content || []).map(adfToPlainText).join('') + '\n\n';
+      } else if (t === 'bulletList' || t === 'orderedList') {
+        const items = (node.content || []).map(item => {
+          const itemText = (item.content || []).map(adfToPlainText).join('');
+          return `• ${itemText}\n`;
+        }).join('');
+        out += items + '\n';
+      } else if (t === 'taskList') {
+        out += (node.content || []).map(item => {
+          const checked = item.attrs && item.attrs.state === 'DONE' ? '[x]' : '[ ]';
+          const itemText = (item.content || []).map(adfToPlainText).join('');
+          return `${checked} ${itemText}\n`;
+        }).join('') + '\n';
+      } else if (node.content) {
+        out += (node.content || []).map(adfToPlainText).join('');
+      }
+      return out;
+    }
+
+    if (!raw || (typeof raw === 'string' && raw.trim() === '')) {
+      descContainer.innerHTML = '<div class="desc-text">—</div>';
+    } else {
+      let plain = '';
+      if (typeof raw === 'object' && raw.type === 'doc') {
+        plain = adfToPlainText(raw.content || []);
+      } else {
+        plain = String(raw);
+      }
+      // escape HTML, preserve line breaks
+      const escapeHtml = (s) => s.replace(/[&<>\"]/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+      const text = escapeHtml(plain);
+      const withBreaks = text.replace(/\r?\n/g, '<br>');
+      descContainer.innerHTML = `<div class="desc-text">${withBreaks}</div>`;
+    }
     modal.classList.add('open');
     // prevent background scroll and apply backdrop effects
     document.body.classList.add('modal-open');
@@ -107,6 +158,20 @@
     card.appendChild(footer);
 
     card.dataset.status = (i.status||'').toLowerCase();
+    card.dataset.priority = (i.priority||'').toLowerCase();
+    card.dataset.labels = (i.labels||[]).join('||');
+    // derive sprint from the numeric part of the issue key (e.g. BCHLRSPPGV-22 -> 22)
+    function getSprintFromKey(key) {
+      if (!key) return '';
+      const m = key.match(/-(\d+)$/);
+      if (!m) return '';
+      const n = parseInt(m[1], 10);
+      if (n >=1 && n <=7) return '1';
+      if ((n >=9 && n <=14) || n === 21 || n === 22) return '2';
+      if (n >=15 && n <=20) return '3';
+      return '';
+    }
+    card.dataset.sprint = getSprintFromKey(i.key);
     // set id for persistence and drag/drop
     card.id = `card-${i.key}`;
     card.setAttribute('draggable','true');
@@ -161,12 +226,64 @@
       }
     });
   }
-
+ 
+   let activeStatus = 'all';
+   let activeSprint = 'all';
+   let activePriority = 'all';
+ 
+   function applyAllFilters() {
+     const cards = Array.from(document.querySelectorAll('.jira-card'));
+     cards.forEach(c => {
+       let visible = true;
+       const st = (c.dataset.status||'').toLowerCase();
+       const s = (activeStatus||'').toLowerCase();
+       if (s && s !== 'all') {
+         if (s === 'to do' || s === 'to-do' || s === 'todo') {
+           visible = /(to do|todo|ikke|open)/i.test(st);
+         } else if (s === 'in progress' || s === 'in-progress' || s === 'pågår' || s === 'inprogress') {
+           visible = /(in progress|pågår|doing)/i.test(st);
+         } else if (s === 'done' || s === 'ferdig' || s === 'completed') {
+           visible = /(done|ferdig|completed)/i.test(st);
+         } else {
+           visible = st.includes(s);
+         }
+       }
+ 
+      // sprint filter: use derived sprint from issue key
+      if (visible && activeSprint && activeSprint !== 'all') {
+        const sprintVal = String(activeSprint);
+        visible = (c.dataset.sprint || '') === sprintVal;
+      }
+ 
+       // priority filter
+       if (visible && activePriority && (activePriority||'').toLowerCase() !== 'all') {
+         const pr = (c.dataset.priority||'').toLowerCase();
+         visible = pr.includes((activePriority||'').toLowerCase());
+       }
+ 
+       c.style.display = visible ? '' : 'none';
+     });
+   }
+ 
   filterBtns.forEach(b => b.addEventListener('click', (e) => {
     filterBtns.forEach(x => x.classList.remove('active'));
     b.classList.add('active');
-    applyFilter(b.dataset.filter);
+    activeStatus = b.dataset.filter || 'all';
+    applyAllFilters();
   }));
+
+  if (sprintSelect) {
+    sprintSelect.addEventListener('change', ()=>{
+      activeSprint = sprintSelect.value || 'all';
+      applyAllFilters();
+    });
+  }
+  if (prioritySelect) {
+    prioritySelect.addEventListener('change', ()=>{
+      activePriority = prioritySelect.value || 'all';
+      applyAllFilters();
+    });
+  }
 
   // drag/drop events for columns
   [colTodo, colInprog, colDone].forEach(body => {
