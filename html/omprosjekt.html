@@ -10,6 +10,9 @@
        Adjust the ../ paths if this file is not in the html/ folder. -->
   <link rel="stylesheet" href="../css/home.css" />
   <link rel="stylesheet" href="../css/omprosjekt.css" />
+  <!-- Jira component styles (scoped to the Jira section) -->
+  <link rel="stylesheet" href="../css/jira.css" />
+  <link rel="stylesheet" href="../css/jira-cards.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Hopp til innhold</a>
@@ -32,6 +35,7 @@
         <p class="lede">Oversikt over mål, kvalitetskrav, planverk og ressursbruk for Bachelorprosjektet: Chatbot for CheckIn.</p>
       </div>
     </section>
+
 
     <section id="hva" class="doc-section reveal">
       <h2>Hva konkret skal prosjektet utvikle og gjøre?</h2>
@@ -82,6 +86,68 @@
         </div>
       </div>
     </section>
+    
+    <!-- Jira sprinter & backlog (placed at page bottom) -->
+    <section id="jira-sprints" class="doc-section reveal">
+      <div class="jira-page">
+        <aside class="jira-hero">
+          <h1>Sprinter og backlogg</h1>
+          <p class="hero-sub">Her finner du sprintene våre og backloggen — oppdatert fra Jira. Bruk filtrene til høyre for å vise sprint, status eller prioritet.</p>
+        </aside>
+
+        <section id="jira-area" class="jira-area">
+          <div class="jira-controls">
+            <div class="jira-filters">
+              <button data-filter="all" class="active">Alle</button>
+              <button data-filter="TO DO">Ikke startet</button>
+              <button data-filter="In Progress">Pågår</button>
+              <button data-filter="DONE">Ferdig</button>
+            </div>
+            <div class="jira-stats">
+              <div class="stat"><span id="stat-total">0</span><small>Totalt oppgaver</small></div>
+              <div class="stat"><span id="stat-todo">0</span><small>Ikke startet</small></div>
+              <div class="stat"><span id="stat-inprog">0</span><small>Pågår</small></div>
+              <div class="stat"><span id="stat-done">0</span><small>Ferdig</small></div>
+            </div>
+            <div class="jira-actions">
+              <div class="action-group jira-priority">
+                <label for="priority-select">Priority:</label>
+                <select id="priority-select">
+                  <option value="all">Alle</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+              <div class="action-group jira-sprints">
+                <label for="sprint-select">Sprint:</label>
+                <select id="sprint-select">
+                  <option value="all">Alle</option>
+                  <option value="1">Sprint 1</option>
+                  <option value="2">Sprint 2</option>
+                  <option value="3">Sprint 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="kanban">
+            <div class="kanban-column" data-col="TO DO">
+              <div class="column-header">Ikke startet <span class="col-count" id="count-todo">0</span></div>
+              <div class="column-body" id="col-todo"></div>
+            </div>
+            <div class="kanban-column" data-col="In Progress">
+              <div class="column-header">Pågår <span class="col-count" id="count-inprog">0</span></div>
+              <div class="column-body" id="col-inprog"></div>
+            </div>
+            <div class="kanban-column" data-col="DONE">
+              <div class="column-header">Ferdig <span class="col-count" id="count-done">0</span></div>
+              <div class="column-body" id="col-done"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -108,5 +174,6 @@
   </footer>
 
   <script src="../js/omprosjekt.js" defer></script>
+  <script src="../js/jira_page.js" defer></script>
 </body>
 </html>
