@@ -360,11 +360,13 @@
         // if there is saved board state, restore positions
         restoreBoardState();
         updateStats(issues);
+        // cache last successful data to localStorage for offline/failure fallback
+        try {
+          localStorage.setItem('jira_last_data', JSON.stringify({ ts: Date.now(), issues }));
+        } catch (e) { console.warn('failed to cache jira data', e); }
       })
       .catch(err => {
         console.error('Error loading Jira data:', err);
-        // Don't wipe the entire Jira area on intermittent fetch failures.
-        // Instead show a small, non-destructive error banner while keeping the last rendered board.
         const existing = areaEl.querySelector('.jira-fetch-error');
         const msg = `Error loading data: ${err.message}`;
         if (existing) {
@@ -375,8 +377,32 @@
           errEl.textContent = msg;
           areaEl.insertAdjacentElement('afterbegin', errEl);
         }
+
+        // try to recover from cached data if available
+        try {
+          const raw = localStorage.getItem('jira_last_data');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            const issues = parsed.issues || [];
+            // only render cached board if there are issues
+            if (issues.length) {
+              currentIssues = issues;
+              populateColumns(issues);
+              restoreBoardState();
+              updateStats(issues);
+              // annotate error banner with cache timestamp
+              const ts = parsed.ts ? new Date(parsed.ts).toLocaleString() : 'cached';
+              const banner = areaEl.querySelector('.jira-fetch-error');
+              if (banner) banner.textContent = msg + ` — showing cached data from ${ts}`;
+            }
+          }
+        } catch (e) { console.warn('failed to use cached jira data', e); }
       });
   }
+
+  // periodic refresh to keep board up to date; fails are handled gracefully above
+  const REFRESH_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
+  setInterval(() => { fetchAndRender(); }, REFRESH_INTERVAL_MS);
 
   // initial load
   fetchAndRender();
