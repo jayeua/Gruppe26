@@ -362,8 +362,19 @@
         updateStats(issues);
       })
       .catch(err => {
-        areaEl.innerHTML = `<div class="error">Error loading data: ${err.message}</div>`;
-        console.error(err);
+        console.error('Error loading Jira data:', err);
+        // Don't wipe the entire Jira area on intermittent fetch failures.
+        // Instead show a small, non-destructive error banner while keeping the last rendered board.
+        const existing = areaEl.querySelector('.jira-fetch-error');
+        const msg = `Error loading data: ${err.message}`;
+        if (existing) {
+          existing.textContent = msg;
+        } else {
+          const errEl = document.createElement('div');
+          errEl.className = 'jira-fetch-error error';
+          errEl.textContent = msg;
+          areaEl.insertAdjacentElement('afterbegin', errEl);
+        }
       });
   }
 

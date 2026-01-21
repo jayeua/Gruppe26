@@ -1,4 +1,574 @@
 {
-  "fetchedAt": "2026-01-21T10:53:30.131Z",
-  "issues": []
+  "fetchedAt": "2026-01-21T11:07:51.912Z",
+  "issues": [
+    {
+      "key": "BCHLRSPPGV-24",
+      "summary": "Make MosCoW for the chatbot",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Must have"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Should have"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Could have"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Wont have"
+              }
+            ]
+          }
+        ]
+      },
+      "created": "2026-01-21T09:32:15.495+0100",
+      "updated": "2026-01-21T09:34:07.359+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-24"
+    },
+    {
+      "key": "BCHLRSPPGV-21",
+      "summary": "Getting familiar with Latex ",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "taskList",
+            "content": [
+              {
+                "type": "taskItem",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Creating a document "
+                  }
+                ],
+                "attrs": {
+                  "localId": "11cd2e18-333f-4cc0-898a-0e00fc8f52ec",
+                  "state": "DONE"
+                }
+              },
+              {
+                "type": "taskItem",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Sharing a document "
+                  }
+                ],
+                "attrs": {
+                  "localId": "c23ce7bb-7ef5-494b-bee2-9c3fab0c21b9",
+                  "state": "TODO"
+                }
+              },
+              {
+                "type": "taskItem",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Test text formatting "
+                  }
+                ],
+                "attrs": {
+                  "localId": "84c8db3d-2289-49f8-9ea8-adc452c0d5b4",
+                  "state": "TODO"
+                }
+              }
+            ],
+            "attrs": {
+              "localId": "018e2451-d0f1-4821-ac77-6d3f6e70bfd0"
+            }
+          }
+        ]
+      },
+      "created": "2026-01-20T10:50:30.835+0100",
+      "updated": "2026-01-20T11:17:48.327+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-21"
+    },
+    {
+      "key": "BCHLRSPPGV-22",
+      "summary": "Plans for quality and quality assurance",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-20T10:52:07.492+0100",
+      "updated": "2026-01-20T11:10:30.608+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-22"
+    },
+    {
+      "key": "BCHLRSPPGV-10",
+      "summary": "Verify and fix ingestion pipeline",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:54:28.263+0100",
+      "updated": "2026-01-19T12:41:20.014+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-10"
+    },
+    {
+      "key": "BCHLRSPPGV-11",
+      "summary": "Validate embeddings and retrieval quality",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:54:43.657+0100",
+      "updated": "2026-01-19T12:41:18.042+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-11"
+    },
+    {
+      "key": "BCHLRSPPGV-12",
+      "summary": "Add prompt templates and citation formatting",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": "Martin Brådland",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:54:53.228+0100",
+      "updated": "2026-01-19T12:41:14.685+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-12"
+    },
+    {
+      "key": "BCHLRSPPGV-13",
+      "summary": "Add basic unit and integration tests",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": "Martin Brådland",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:54:59.627+0100",
+      "updated": "2026-01-19T12:41:12.512+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-13"
+    },
+    {
+      "key": "BCHLRSPPGV-14",
+      "summary": "Demo scenarios, README updates & demo.py",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": "Martin Brådland",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:55:23.172+0100",
+      "updated": "2026-01-19T12:41:08.127+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-14"
+    },
+    {
+      "key": "BCHLRSPPGV-20",
+      "summary": "User testing + collect 1st feedback",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:58:48.440+0100",
+      "updated": "2026-01-19T10:58:48.547+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-20"
+    },
+    {
+      "key": "BCHLRSPPGV-19",
+      "summary": "Monitoring, logging, and error reporting setup",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:58:26.234+0100",
+      "updated": "2026-01-19T10:58:26.318+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-19"
+    },
+    {
+      "key": "BCHLRSPPGV-9",
+      "summary": "Run app locally & test ",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:47:01.726+0100",
+      "updated": "2026-01-19T10:58:04.007+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-9"
+    },
+    {
+      "key": "BCHLRSPPGV-18",
+      "summary": "Deployment plan + CI/CD for staging",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:57:55.776+0100",
+      "updated": "2026-01-19T10:57:55.880+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-18"
+    },
+    {
+      "key": "BCHLRSPPGV-17",
+      "summary": "Integrate basic auth and API-key handling for the company (Checkin)",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:57:21.571+0100",
+      "updated": "2026-01-19T10:57:21.655+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-17"
+    },
+    {
+      "key": "BCHLRSPPGV-16",
+      "summary": "Add safeguards and verification layer",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:56:58.396+0100",
+      "updated": "2026-01-19T10:56:58.509+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-16"
+    },
+    {
+      "key": "BCHLRSPPGV-15",
+      "summary": "Imlement short conversation state & context interval",
+      "issueType": "Task",
+      "status": "To Do",
+      "assignee": null,
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-19T10:56:43.921+0100",
+      "updated": "2026-01-19T10:56:44.004+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-15"
+    },
+    {
+      "key": "BCHLRSPPGV-2",
+      "summary": "Creating project layout root",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Low",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Start by structuring the folders inside the git-folder "
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Make it readable and ease to access"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Simplify the folders and files to make it more convenient for developers"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "created": "2026-01-15T10:48:45.180+0100",
+      "updated": "2026-01-19T09:12:51.397+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-2"
+    },
+    {
+      "key": "BCHLRSPPGV-5",
+      "summary": "Github Actions examination",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Low",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Examine that after pushing and pulling changes there arent files that are out of place and so on. "
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "created": "2026-01-15T10:52:55.939+0100",
+      "updated": "2026-01-19T09:12:50.870+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-5"
+    },
+    {
+      "key": "BCHLRSPPGV-7",
+      "summary": "Rough Plan the batchlor project",
+      "issueType": "Task",
+      "status": "In Progress",
+      "assignee": "Martin Brådland",
+      "priority": "High",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-16T10:42:40.000+0100",
+      "updated": "2026-01-19T09:11:02.586+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-7"
+    },
+    {
+      "key": "BCHLRSPPGV-4",
+      "summary": "CI Skeleton (Github Actions)",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "High",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Ensure when pushing or pulling changes that everything goes smoothly and able to make any changes"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "created": "2026-01-15T10:52:12.516+0100",
+      "updated": "2026-01-16T12:41:15.365+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-4"
+    },
+    {
+      "key": "BCHLRSPPGV-3",
+      "summary": "Install developer tools",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Install the necessary and the needed extensions that supports and run the application "
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Ensure that it is up-to-date"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Use Copilot to see and ensure if theres any error occurs"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "created": "2026-01-15T10:51:40.204+0100",
+      "updated": "2026-01-16T12:40:45.095+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-3"
+    },
+    {
+      "key": "BCHLRSPPGV-1",
+      "summary": "Setup & Foundations",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Jay Pluma",
+      "priority": "Medium",
+      "labels": [],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Setup github repo"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Install apps, tools, and technologies (IDE, extensions, libraries, etc.)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "created": "2026-01-15T10:40:47.590+0100",
+      "updated": "2026-01-16T12:40:40.263+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-1"
+    },
+    {
+      "key": "BCHLRSPPGV-6",
+      "summary": "Finish \"Gruppekontrakt\"",
+      "issueType": "Task",
+      "status": "Done",
+      "assignee": "Martin Brådland",
+      "priority": "Medium",
+      "labels": [],
+      "description": "",
+      "created": "2026-01-15T10:58:40.593+0100",
+      "updated": "2026-01-16T10:42:48.188+0100",
+      "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-6"
+    }
+  ]
 }
