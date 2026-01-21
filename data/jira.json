@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "fetchedAt": "2026-01-21T09:53:35.039Z",
-  "issues": []
-=======
-  "fetchedAt": "2026-01-21T09:50:01.466Z",
   "issues": [
     {
       "key": "BCHLRSPPGV-24",
@@ -575,5 +571,4 @@
       "url": "https://jaypluma.atlassian.net/browse/BCHLRSPPGV-6"
     }
   ]
->>>>>>> 287d157 (fetch)
 }
