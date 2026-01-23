@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  const DATA_PATH = '../data/jira.json';
+  const DATA_PATHS = ['../data/jira.json', '../data/jira.snapshot.json'];
   const areaEl = document.getElementById('jira-area');
   const colTodo = document.getElementById('col-todo');
   const colInprog = document.getElementById('col-inprog');
@@ -351,53 +351,60 @@
   }
 
   function fetchAndRender(){
-    fetch(DATA_PATH, { cache: 'no-store' })
-      .then(r => { if (!r.ok) throw new Error('data not found'); return r.json(); })
-      .then(json => {
-        const issues = json.issues || [];
-        currentIssues = issues;
-        populateColumns(issues);
-        // if there is saved board state, restore positions
-        restoreBoardState();
-        updateStats(issues);
-        // cache last successful data to localStorage for offline/failure fallback
-        try {
-          localStorage.setItem('jira_last_data', JSON.stringify({ ts: Date.now(), issues }));
-        } catch (e) { console.warn('failed to cache jira data', e); }
-      })
-      .catch(err => {
-        console.error('Error loading Jira data:', err);
+    // try multiple data paths (first is generated, second is committed snapshot)
+    let attempt = 0;
+    function tryNext() {
+      const path = DATA_PATHS[attempt++];
+      if (!path) {
+        // all attempts failed — try cached localStorage fallback
+        console.error('All data fetch attempts failed');
         const existing = areaEl.querySelector('.jira-fetch-error');
-        const msg = `Error loading data: ${err.message}`;
-        if (existing) {
-          existing.textContent = msg;
-        } else {
+        const msg = `Error loading data: all sources failed`;
+        if (existing) existing.textContent = msg;
+        else {
           const errEl = document.createElement('div');
           errEl.className = 'jira-fetch-error error';
           errEl.textContent = msg;
           areaEl.insertAdjacentElement('afterbegin', errEl);
         }
-
-        // try to recover from cached data if available
         try {
           const raw = localStorage.getItem('jira_last_data');
           if (raw) {
             const parsed = JSON.parse(raw);
             const issues = parsed.issues || [];
-            // only render cached board if there are issues
             if (issues.length) {
               currentIssues = issues;
               populateColumns(issues);
               restoreBoardState();
               updateStats(issues);
-              // annotate error banner with cache timestamp
               const ts = parsed.ts ? new Date(parsed.ts).toLocaleString() : 'cached';
               const banner = areaEl.querySelector('.jira-fetch-error');
               if (banner) banner.textContent = msg + ` — showing cached data from ${ts}`;
             }
           }
         } catch (e) { console.warn('failed to use cached jira data', e); }
-      });
+        return;
+      }
+
+      fetch(path, { cache: 'no-store' })
+        .then(r => { if (!r.ok) throw new Error('data not found: ' + path); return r.json(); })
+        .then(json => {
+          const issues = json.issues || [];
+          currentIssues = issues;
+          populateColumns(issues);
+          // if there is saved board state, restore positions
+          restoreBoardState();
+          updateStats(issues);
+          // cache last successful data to localStorage for offline/failure fallback
+          try { localStorage.setItem('jira_last_data', JSON.stringify({ ts: Date.now(), issues })); } catch (e) { console.warn('failed to cache jira data', e); }
+        })
+        .catch(err => {
+          console.warn('Fetch failed for', path, err);
+          tryNext();
+        });
+    }
+
+    tryNext();
   }
 
   // periodic refresh to keep board up to date; fails are handled gracefully above
