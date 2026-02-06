@@ -1,5 +1,7 @@
 // ===== SILKEMYKE FADE-IN + EKSTRA SMOOTH SCROLL =====
 const faders = document.querySelectorAll('.fade-in');
+const revealElements = document.querySelectorAll('.reveal');
+
 const appearOptions = {
     threshold: 0.15,
     rootMargin: "0px 0px -100px 0px" // starter animasjon litt tidligere = bedre følelse
@@ -14,8 +16,18 @@ const appearOnScroll = new IntersectionObserver((entries, observer) => {
     });
 }, appearOptions);
 
+const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+    });
+}, appearOptions);
+
 // Start observasjon
 faders.forEach(fader => appearOnScroll.observe(fader));
+revealElements.forEach(el => revealOnScroll.observe(el));
 
 // ===== EKSTRA: Gjør all scrolling på siden helt silkemyk =====
 document.documentElement.style.scrollBehavior = 'smooth';
